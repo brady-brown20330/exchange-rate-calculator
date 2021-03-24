@@ -3,20 +3,28 @@ import axios from 'axios';
 
 const Dropdowns = (props) => {
 const [currencyOptions, setCurrenctOptions] = useState({});
-const [current1, setCurrent1] = useState('')
-const [current2, setCurrent2] = useState('')
+const [amount, setAmount] = useState(0)
+const [convertFrom, setconvertFrom] = useState('')
+const [convertTo, setConvertTo] = useState('')
+const [conversionData, setConversionData] = useState({})
+
+// base url from frakfurter API
+const host = 'https://api.frankfurter.app'
 
   useEffect(() => {
-    axios.get(`https://api.frankfurter.app/currencies`)
+    axios.get(`${host}/currencies`)
     .then(data => setCurrenctOptions(data.data))
   }, [])
 
 const handleDropdownChange = (e) => {
-  console.log(e.target.value)
+  if (e.target.className == 'from-select') setconvertFrom(e.target.value)
+
+  else if (e.target.className == 'to-select') setConvertTo(e.target.value)
 }
 
 const getComparisonData = () => {
-  
+  axios.get(`${host}/latest?amount=1&from=${convertFrom}&to=${convertTo}`)
+  .then(data => setConversionData(data.data))
 }
 
 if (currencyOptions.length < 1) {
@@ -24,28 +32,31 @@ if (currencyOptions.length < 1) {
     <div>Loading</div>
   )
 }
-console.log(Object.values(currencyOptions))
+
 return (
-  <div style={{display: 'inline'}}>
-    <select value={current1} onChange={handleDropdownChange}>
-      <option selected="selected">test</option>
-      {Object.keys(currencyOptions).map((place) => {
-        return (
-          <option key={place} value={place}>{place}</option>
-        )
-      })}
-    </select>
+  <div>
+    <div style={{display: 'inline'}}>
+      <select className='from-select' value={convertFrom} onChange={handleDropdownChange}>
+        <option selected="selected">test</option>
+        {Object.keys(currencyOptions).map((place) => {
+          return (
+            <option key={place} value={place}>{place}</option>
+          )
+        })}
+      </select>
 
-    <select value={current2} onChange={handleDropdownChange}>
-      <option selected="selected">test</option>
-      {Object.keys(currencyOptions).map((place) => {
-        return (
-          <option key={place} value={place}>{place}</option>
-        )
-      })}
-    </select>
+      <select className='to-select' value={convertTo} onChange={handleDropdownChange}>
+        <option selected="selected">test</option>
+        {Object.keys(currencyOptions).map((place) => {
+          return (
+            <option key={place} value={place}>{place}</option>
+          )
+        })}
+      </select>
 
-    <button onClick={getComparisonData}>Compare</button>
+      <button onClick={getComparisonData}>Compare</button>
+    </div>
+    <div>{conversionData.date ? `As of ${conversionData.date}` : null}</div>
   </div>
 )
 }
