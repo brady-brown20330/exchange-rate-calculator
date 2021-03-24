@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "(webpack --watch) & nodemon server/server.js"
+    "start": "(webpack --watch) & nodemon server/server.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",

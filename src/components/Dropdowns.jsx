@@ -59,7 +59,7 @@ return (
 
       <button onClick={getComparisonData}>Compare</button>
     </div>
-    <div>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${conversionData.rates[convertTo]} ${convertTo}` : null}</div>
+    <h1>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${conversionData.rates[convertTo]} ${convertTo}` : null}</h1>
   </div>
 )
 }
