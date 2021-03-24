@@ -24,7 +24,10 @@ const handleDropdownChange = (e) => {
 
 const getComparisonData = () => {
   axios.get(`${host}/latest?amount=1&from=${convertFrom}&to=${convertTo}`)
-  .then(data => setConversionData(data.data))
+  .then(data => {
+    setConversionData(data.data)  
+      console.log(data.data)
+    })
 }
 
 if (currencyOptions.length < 1) {
@@ -37,7 +40,7 @@ return (
   <div>
     <div style={{display: 'inline'}}>
       <select className='from-select' value={convertFrom} onChange={handleDropdownChange}>
-        <option selected="selected">test</option>
+        <option selected="selected"></option>
         {Object.keys(currencyOptions).map((place) => {
           return (
             <option key={place} value={place}>{place}</option>
@@ -46,7 +49,7 @@ return (
       </select>
 
       <select className='to-select' value={convertTo} onChange={handleDropdownChange}>
-        <option selected="selected">test</option>
+        <option selected="selected"></option>
         {Object.keys(currencyOptions).map((place) => {
           return (
             <option key={place} value={place}>{place}</option>
@@ -56,7 +59,7 @@ return (
 
       <button onClick={getComparisonData}>Compare</button>
     </div>
-    <div>{conversionData.date ? `As of ${conversionData.date}` : null}</div>
+    <div>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${conversionData.rates[convertTo]} ${convertTo}` : null}</div>
   </div>
 )
 }
