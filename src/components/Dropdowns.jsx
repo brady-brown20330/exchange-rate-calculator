@@ -59,7 +59,7 @@ return (
     <form className='form-wrapper' onClick={function(event) {event.preventDefault()}}>
       <div className='amount-wrapper'>
         <div>Select an amount:</div>
-        <input onChange={handleAmountChange}></input>
+        <input className='amount-input' onChange={handleAmountChange}></input>
       </div>
 
 
@@ -89,7 +89,7 @@ return (
 
       <button className='convert-button' onClick={getComparisonData}>Compare</button>
     </form>
-    <h1>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${Object.values(conversionData.rates)[0]} ${Object.keys(conversionData.rates)[0]}` : null}</h1>
+    <h1 className='header-one'>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${Object.values(conversionData.rates)[0]} ${Object.keys(conversionData.rates)[0]}` : null}</h1>
   </div>
 )
 }

@@ -1,33 +1,67 @@
 body {
-  display: flex;
-  align-items: center;
-  background-color:  #f2f0e6;
+  background-color:  #1D2951;
   color: black;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .app {
-  margin-left: 50%;
-  text-align: center;
+  margin: auto;
   width: 50%;
+  text-align: center;
+}
 
+.header-one {
+  color: aliceblue;
 }
 
 .form-wrapper {
-  background-color: #FFFFFF;
+  background-color: aliceblue;
   border-radius: 5px;
   max-width: 85%;
   margin: auto;
   padding: 10px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  box-shadow: rgba(180, 174, 235, 0) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
 }
 
-.from-wrapper {}
+/* .from-wrapper {}
 
-.to-wrapper {}
+.to-wrapper {} */
 
-.from-select {}
+.from-select {
+  padding: 5px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
 
-.to-select {}
+.to-select {
+  padding: 5px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
 
-.convert-button {}
+option {
+  font-size: 16px;
+}
+
+option:nth-child(odd) {
+  background-color: lightgray;
+}
+
+.amount-input {
+  padding: 5px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.convert-button {
+  font-size: 16px;
+}
