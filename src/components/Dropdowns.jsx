@@ -4,7 +4,7 @@ import axios from 'axios';
 const Dropdowns = (props) => {
 const [currencyOptions, setCurrenctOptions] = useState({});
 const [amount, setAmount] = useState(0)
-const [convertFrom, setconvertFrom] = useState('')
+const [convertFrom, setConvertFrom] = useState('')
 const [convertTo, setConvertTo] = useState('')
 const [conversionData, setConversionData] = useState({})
 
@@ -19,10 +19,15 @@ useEffect(() => {
 
 // handles the dropdown changing based on the select className
 const handleDropdownChange = (e) => {
-  if (e.target.className == 'from-select') setconvertFrom(e.target.value)
-  else if (e.target.className == 'to-select') setConvertTo(e.target.value)
+  if (e.target.className == 'from-select') {
+    setConvertFrom(getKeyByValue(currencyOptions, e.target.value))
+  }
+  else if (e.target.className == 'to-select') {
+    setConvertTo(getKeyByValue(currencyOptions, e.target.value))
+  }
 }
 
+// handles the amount input field
 const handleAmountChange = (e) => {
   setAmount(e.target.value)
 }
@@ -39,6 +44,10 @@ const getComparisonData = () => {
     })
 }
 
+const getKeyByValue = (object, value) => {
+  return Object.keys(object).find(key => object[key] === value);
+}
+
 if (currencyOptions.length < 1) {
   return (
     <div>Loading</div>
@@ -47,32 +56,32 @@ if (currencyOptions.length < 1) {
 
 return (
   <div>
-    <div style={{display: 'inline'}}>
+    <form style={{display: 'inline'}} onClick={function(event) {event.preventDefault()}}>
       <div>Select an amount:</div>
       <input onChange={handleAmountChange}></input>
 
       <div>Convert From:</div>
-      <select className='from-select' value={convertFrom} onChange={handleDropdownChange}>
-        <option selected="selected"></option>
-        {Object.keys(currencyOptions).map((place) => {
+      <select className='from-select' defaultValue={convertFrom} onChange={handleDropdownChange}>
+        <option></option>
+        {Object.values(currencyOptions).map((place) => {
           return (
-            <option key={place} value={place}>{place}</option>
+            <option key={place}>{place}</option>
           )
         })}
       </select>
 
       <div>To:</div>
-      <select className='to-select' value={convertTo} onChange={handleDropdownChange}>
-        <option selected="selected"></option>
-        {Object.keys(currencyOptions).map((place) => {
+      <select className='to-select' defaultValue={convertTo} onChange={handleDropdownChange}>
+        <option></option>
+        {Object.values(currencyOptions).map((place) => {
           return (
-            <option key={place} value={place}>{place}</option>
+            <option key={place}>{place}</option>
           )
         })}
       </select>
 
       <button onClick={getComparisonData}>Compare</button>
-    </div>
+    </form>
     <h1>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${Object.values(conversionData.rates)[0]} ${Object.keys(conversionData.rates)[0]}` : null}</h1>
   </div>
 )
