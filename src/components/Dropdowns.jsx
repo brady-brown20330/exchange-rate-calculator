@@ -23,6 +23,10 @@ const handleDropdownChange = (e) => {
 }
 
 const getComparisonData = () => {
+
+  if (convertFrom == convertTo) {
+    alert(`Cannot convert ${convertFrom} to ${convertTo}...`)
+  }
   axios.get(`${host}/latest?amount=1&from=${convertFrom}&to=${convertTo}`)
   .then(data => {
     setConversionData(data.data)  
@@ -59,7 +63,7 @@ return (
 
       <button onClick={getComparisonData}>Compare</button>
     </div>
-    <h1>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${conversionData.rates[convertTo]} ${convertTo}` : null}</h1>
+    <h1>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${Object.values(conversionData.rates)[0]} ${Object.keys(conversionData.rates)[0]}` : null}</h1>
   </div>
 )
 }
