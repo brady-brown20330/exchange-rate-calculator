@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import TimeSeries from './TimeSeries';
+
 
 const Dropdowns = (props) => {
 const [currencyOptions, setCurrenctOptions] = useState({});
@@ -90,6 +92,7 @@ return (
       <button className='convert-button' onClick={getComparisonData}>Compare</button>
     </form>
     <h1 className='header-one'>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${Object.values(conversionData.rates)[0]} ${Object.keys(conversionData.rates)[0]}` : null}</h1>
+    <TimeSeries host={host} convertTo={convertTo}/>
   </div>
 )
 }
