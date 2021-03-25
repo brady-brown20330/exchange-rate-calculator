@@ -5,6 +5,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <h1>Support small to medium sized currencies</h1>
       <Dropdowns />
     </div>
   )
