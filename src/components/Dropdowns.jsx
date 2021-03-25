@@ -56,31 +56,38 @@ if (currencyOptions.length < 1) {
 
 return (
   <div>
-    <form style={{display: 'inline'}} onClick={function(event) {event.preventDefault()}}>
-      <div>Select an amount:</div>
-      <input onChange={handleAmountChange}></input>
+    <form className='form-wrapper' onClick={function(event) {event.preventDefault()}}>
+      <div className='amount-wrapper'>
+        <div>Select an amount:</div>
+        <input onChange={handleAmountChange}></input>
+      </div>
 
-      <div>Convert From:</div>
-      <select className='from-select' defaultValue={convertFrom} onChange={handleDropdownChange}>
-        <option></option>
-        {Object.values(currencyOptions).map((place) => {
-          return (
-            <option key={place}>{place}</option>
-          )
-        })}
-      </select>
 
-      <div>To:</div>
-      <select className='to-select' defaultValue={convertTo} onChange={handleDropdownChange}>
-        <option></option>
-        {Object.values(currencyOptions).map((place) => {
-          return (
-            <option key={place}>{place}</option>
-          )
-        })}
-      </select>
+      <div className='from-wrapper'>
+        <div>Convert From:</div>
+        <select className='from-select' defaultValue={convertFrom} onChange={handleDropdownChange}>
+          <option></option>
+          {Object.values(currencyOptions).map((place) => {
+            return (
+              <option key={place}>{place}</option>
+            )
+          })}
+        </select>
+      </div>
 
-      <button onClick={getComparisonData}>Compare</button>
+      <div className='to-wrapper'>
+        <div>To:</div>
+        <select className='to-select' defaultValue={convertTo} onChange={handleDropdownChange}>
+          <option></option>
+          {Object.values(currencyOptions).map((place) => {
+            return (
+              <option key={place}>{place}</option>
+            )
+          })}
+        </select>
+      </div>
+
+      <button className='convert-button' onClick={getComparisonData}>Compare</button>
     </form>
     <h1>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${Object.values(conversionData.rates)[0]} ${Object.keys(conversionData.rates)[0]}` : null}</h1>
   </div>
