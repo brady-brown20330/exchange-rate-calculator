@@ -31,6 +31,10 @@ const handleDropdownChange = (e) => {
 
 // handles the amount input field
 const handleAmountChange = (e) => {
+  if (isNaN(e.target.value)) {
+    e.target.value = null
+    alert('Amount must be a number')
+  }
   setAmount(e.target.value)
 }
 
