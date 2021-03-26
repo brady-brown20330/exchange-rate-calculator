@@ -91,7 +91,7 @@ return (
 
       <button className='convert-button' onClick={getComparisonData}>Compare</button>
     </form>
-    <h1 className='header-one'>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${conversionData.base} is equal to ${Object.values(conversionData.rates)[0]} ${Object.keys(conversionData.rates)[0]}` : null}</h1>
+    <h1 className='header-one'>{conversionData.date ? `As of ${conversionData.date} ${conversionData.amount} ${currencyOptions[conversionData.base]} is equal to ${Object.values(conversionData.rates)[0]} ${currencyOptions[Object.keys(conversionData.rates)[0]]}` : null}</h1>
     <TimeSeries host={host} convertTo={convertTo}/>
   </div>
 )
